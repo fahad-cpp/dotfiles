@@ -1,0 +1,25 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+dimensions.lines = 38
+dimensions.columns = 110
+decorations = "buttonless"
+padding.x = 12
+padding.y = 12
+blur = true
+opacity = 0.85
+
+[font]
+normal.family = "JetBrainsMono Nerd Font"
+normal.style = "Regular"
+bold.family = "JetBrainsMono Nerd Font"
+bold.style = "Bold"
+size = 10.0
+
+
+builtin_box_drawing = true
+
+[colors.primary]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
