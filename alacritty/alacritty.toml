@@ -1,3 +1,5 @@
+general.import = ["~/.cache/wal/colors-alacritty.toml"]
+
 [env]
 TERM = "xterm-256color"
 
@@ -19,7 +21,3 @@ size = 10.0
 
 
 builtin_box_drawing = true
-
-[colors.primary]
-background = "#1e1e2e"
-foreground = "#cdd6f4"
