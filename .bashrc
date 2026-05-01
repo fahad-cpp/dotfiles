@@ -10,7 +10,7 @@ alias grep='grep --color=auto'
 PS1='\W\n> '
 
 # pywal
-(cat ~/.cache/wal/sequences &)
+# (cat ~/.cache/wal/sequences &)
 
 . "$HOME/.local/bin/env"
 

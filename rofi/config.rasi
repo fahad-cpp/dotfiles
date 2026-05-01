@@ -1,0 +1,18 @@
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+configuration {
+	show-icons: true;
+}
+
+listview {
+	columns: 5;
+	lines: 3;
+}
+
+element {
+	orientation: vertical;
+}
+
+element-icon {
+	size: 48px;
+}
