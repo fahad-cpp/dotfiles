@@ -16,3 +16,5 @@ element {
 element-icon {
 	size: 48px;
 }
+
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
