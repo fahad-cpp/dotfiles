@@ -1,0 +1,43 @@
+/* 1. Import the correct pywal stylesheet (Make sure to replace YOUR_USERNAME) */
+@import url("file:///home/Fahad/.cache/wal/colors.css");
+
+/* 2. Base window layout */
+.notification {
+  font-family: "Noto Sans", sans-serif;
+  
+  /* Use var() to reference the absolute darkest pywal color */
+  background-color: var(--color0);
+  color: var(--foreground);
+  
+  /* Give it a subtle border using your theme accent */
+  border: 1px solid var(--color1);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* 3. Text Sizing Hierarchy */
+.notification-content .summary {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--color4); /* A distinct accent color for the title */
+}
+
+.notification-content .body {
+  font-size: 11px;
+  color: var(--foreground);
+}
+
+/* 4. Action Button Customization */
+.notification-action {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 11px;
+  background-color: var(--color1);
+  color: var(--foreground);
+  border-radius: 4px;
+  margin: 5px;
+  padding: 4px 8px;
+}
+
+.notification-action:hover {
+  background-color: var(--color2);
+}

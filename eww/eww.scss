@@ -138,11 +138,9 @@ $radius-track: 10px;
   padding: 4px 6px; 
 }
 
-/* Aggressive theme override targeting GTK engine to forcefully fill the scale bar */
+/* Android 12 Thick Sliders */
 scale.slider {
-  /* Target the general background of the active progression zone */
-  background: transparent;
-  margin: 0;
+  margin: 0; 
 
   trough {
     background-color: $border-strong;
@@ -150,15 +148,13 @@ scale.slider {
     min-height: 18px; 
     margin: 0 2px; 
 
-    /* Force background highlights across both GTK3/GTK4 node layouts */
-    highlight, progressbar {
+    progressbar, highlight {
       background: $accent;
       background-color: $accent;
       border-radius: $radius-track;
     }
   }
 
-  /* This catches themes that style scale progress bars globally */
   progressbar {
     background: $accent;
     background-color: $accent;

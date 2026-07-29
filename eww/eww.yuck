@@ -21,7 +21,7 @@
             (label :class "btn-label" :text "Wi-Fi" :limit-width 9 :show_truncated true)))
 
         (button :class {bt_status == "on" ? "toggle-btn active" : "toggle-btn"}
-                :onclick "hyprctl dispatch exec ~/.config/eww/scripts/toggle.sh bluetooth"
+                :onclick "hyprctl dispatch exec bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰂯")
             (label :class "btn-label" :text "Bluetooth" :limit-width 9 :show_truncated true)))))
@@ -69,14 +69,27 @@
             (label :class "icon app-icon" :text "󰞷")
             (label :class "btn-label" :text "Terminal" :limit-width 9 :show_truncated true)))))
 
-    ;; Section 4: Power Options (Fixed limit-width)
+    ;; Section 4: Power Options (Expanded with Sleep & Reboot)
     (box :class "section" :orientation "vertical" :space-evenly false :spacing 12
       (label :class "section-title" :text "SYSTEM POWER" :halign "start")
+      
+      ;; Top row: Log Out & Sleep
       (box :orientation "horizontal" :space-evenly true :spacing 10
         (button :class "power-btn" :onclick "hyprctl dispatch exit"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰐥")
             (label :class "btn-label" :text "Log Out" :limit-width 9 :show_truncated true)))
+        (button :class "power-btn" :onclick "hyprctl dispatch exec systemctl suspend"
+          (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
+            (label :class "icon" :text "󰤄")
+            (label :class "btn-label" :text "Sleep" :limit-width 9 :show_truncated true))))
+      
+      ;; Bottom row: Reboot & Shut Down
+      (box :orientation "horizontal" :space-evenly true :spacing 10
+        (button :class "power-btn" :onclick "hyprctl dispatch exec systemctl reboot"
+          (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
+            (label :class "icon" :text "󰜉")
+            (label :class "btn-label" :text "Reboot" :limit-width 9 :show_truncated true)))
         (button :class "power-btn" :onclick "hyprctl dispatch exec systemctl poweroff"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰐥")
@@ -86,4 +99,4 @@
 (defpoll current_volume :interval "1s" "amixer -D pulse sget Master | grep -oP '\\[\\d+%\\]' | head -n1 | tr -d '[]%'")
 (defpoll current_brightness :interval "1s" "brightnessctl i | grep -oP '\\(\\d+%\\)' | tr -d '(%)'")
 (defpoll wifi_status :interval "1s" "nmcli radio wifi | grep -q enabled && echo 'on' || echo 'off'")
-(defpoll bt_status :interval "2s" "~/.config/eww/scripts/status.sh bluetooth")
+(defpoll bt_status :interval "1s" "bluetoothctl show | grep -q 'Powered: yes' && echo 'on' || echo 'off'")
