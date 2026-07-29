@@ -1,25 +1,47 @@
-/* 1. Import the correct pywal stylesheet (Make sure to replace YOUR_USERNAME) */
-@import url("file:///home/Fahad/.cache/wal/colors.css");
+/* 1. Import dynamic pywal theme */
+@import url("../../.cache/wal/colors.css");
 
-/* 2. Base window layout */
-.notification {
-  font-family: "Noto Sans", sans-serif;
-  
-  /* Use var() to reference the absolute darkest pywal color */
-  background-color: var(--color0);
-  color: var(--foreground);
-  
-  /* Give it a subtle border using your theme accent */
-  border: 1px solid var(--color1);
-  border-radius: 8px;
-  padding: 10px;
+/* 2. Fix the outer layout blocks (Keep them invisible so corners stay rounded) */
+.notification-row,
+.notification-row:hover,
+.notification-row:focus,
+.notification-background,
+.notification-background:hover {
+  background-image: none;
+  background-color: transparent;
+  outline: none;
 }
 
-/* 3. Text Sizing Hierarchy */
+/* 3. The Clickable Base & Hover Mask (Matches background to hide description hover) */
+.notification-default-action,
+.notification-default-action:hover {
+  background-image: none;
+  background-color: var(--color0); 
+  border-radius: 19px; /* Matches your notification shape perfectly */
+}
+
+/* 4. Base window layout */
+.notification {
+  font-family: "Noto Sans", sans-serif;
+  background-image: none;
+  background-color: var(--color0);
+  color: var(--foreground);
+  border: 1px solid var(--color1);
+  border-radius: 19px;
+  padding: 14px;
+}
+
+.notification:hover {
+  background-image: none;
+  background-color: var(--color0);
+}
+
+/* 5. Text Sizing Hierarchy */
 .notification-content .summary {
   font-size: 13px;
   font-weight: bold;
-  color: var(--color4); /* A distinct accent color for the title */
+  color: var(--color4);
+  margin-bottom: 2px;
 }
 
 .notification-content .body {
@@ -27,17 +49,86 @@
   color: var(--foreground);
 }
 
-/* 4. Action Button Customization */
+.notification-content:hover,
+.notification-content .summary:hover,
+.notification-content .body:hover {
+  background-image: none;
+  background-color: transparent;
+}
+
+/* 6. Action Buttons Container */
 .notification-action {
   font-family: "Noto Sans", sans-serif;
   font-size: 11px;
-  background-color: var(--color1);
+  
+  background-image: none;
+  background-color: transparent;
   color: var(--foreground);
-  border-radius: 4px;
-  margin: 5px;
-  padding: 4px 8px;
+  border: 1px solid var(--color1);
+  border-radius: 10px;
+  margin: 6px 4px 0px 4px;
+  padding: 0px;
+  
+  box-shadow: none;
+  text-shadow: none;
 }
 
+/* 7. Inner Button Space */
+.notification-action button {
+  background-image: none;
+  background-color: transparent;
+  color: inherit;
+  
+  border: none;
+  border-radius: 10px; 
+  padding: 8px 16px;
+  margin: 0px;
+  
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* 8. Muted Button Hover Logic */
 .notification-action:hover {
-  background-color: var(--color2);
+  background-image: none;
+  background-color: var(--color1); 
+  border-color: var(--color1);
+}
+
+.notification-action:hover button {
+  color: var(--foreground); 
+}
+
+/* Clean up label text structures */
+.notification-action label {
+  background-image: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+/* 9. Progress Bar Look (Used dynamically by volume & brightness alerts) */
+.notification progressbar {
+  margin-top: 8px;
+  min-height: 6px;
+  border-radius: 4px;
+  background-image: none;
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle track visibility */
+}
+
+.notification progressbar progress {
+  border-radius: 4px;
+  background-image: none;
+  background-color: var(--color4); /* Fills beautifully with your pywal accent */
+}
+
+/* 10. Notification Icon Constraints (GTK-compliant scaling) */
+.notification image,
+.notification native-image,
+.notification .image {
+  margin-right: 12px;
+  border-radius: 6px;
+  min-width: 28px;
+  min-height: 28px;
+  -gtk-icon-size: 28px;
 }
