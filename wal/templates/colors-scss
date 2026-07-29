@@ -1,0 +1,32 @@
+// Pywal SCSS template
+// Pywal normally generates this automatically at ~/.cache/wal/colors-scss
+// after you run: wal -i /path/to/wallpaper.jpg
+//
+// If that file is missing, either:
+//   1. Run `wal -i <image>` (or `wal -R` to reload the last used theme), or
+//   2. Copy this file to ~/.cache/wal/colors-scss and fill in real hex values
+//      as a manual placeholder until wal generates its own.
+//
+// Variable names below match pywal's actual output exactly - eww.scss
+// depends on $color0.$color15, $background, $foreground, $cursor existing.
+
+$background: #1e1e2e;
+$foreground: #cdd6f4;
+$cursor:     #cdd6f4;
+
+$color0:  #1e1e2e; // usually == background
+$color1:  #f38ba8;
+$color2:  #a6e3a1;
+$color3:  #f9e2af;
+$color4:  #89b4fa;
+$color5:  #cba6f7;
+$color6:  #94e2d5;
+$color7:  #cdd6f4; // usually == foreground / main text color
+$color8:  #585b70; // muted/darker variant, often used for card backgrounds
+$color9:  #f38ba8;
+$color10: #a6e3a1;
+$color11: #f9e2af;
+$color12: #89b4fa;
+$color13: #cba6f7;
+$color14: #94e2d5;
+$color15: #a6adc8;

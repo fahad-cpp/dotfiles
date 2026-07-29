@@ -1,0 +1,175 @@
+/* Import Pywal Colors */
+@import '../../.cache/wal/colors.scss';
+
+/* Fixed Pywal Color Palette System */
+$bg-color: transparentize($color0, 0.08);       
+$card-bg: transparentize($color0, 0.6);         
+$tile-bg: transparentize($color7, 0.94);        
+$accent: $color2;                              
+$text-main: $color7;                           
+$text-muted: transparentize($color7, 0.45);
+
+/* Soft vibrant red for the system power endpoints */
+$red-accent: #ff5555; 
+
+$border-soft: transparentize($color7, 0.92);
+$border-strong: transparentize($color7, 0.85);
+
+/* Trimmed Down Sizing Scale */
+$pad-outer: 18px;      
+$pad-section: 14px;    
+$pad-btn-y: 12px;      
+$pad-btn-x: 6px;
+
+$radius-outer: 20px;
+$radius-section: 14px;
+$radius-btn: 12px;
+$radius-track: 10px;
+
+/* Global resets */
+* {
+  background-color: transparent;
+  font-family: "Noto Sans", sans-serif;
+}
+
+/* Sustainable Icon Solution */
+.icon {
+  font-family: "JetBrainsMono Nerd Font", "Material Design Icons", "Symbols Nerd Font";
+  font-size: 18px; 
+}
+
+/* Slider Icons matched to Accent */
+.slider-icon {
+  font-family: "JetBrainsMono Nerd Font", "Material Design Icons", "Symbols Nerd Font";
+  font-size: 16px;
+  color: $accent;
+  min-width: 24px;
+}
+
+/* The Single Main Box Container */
+.panel-box {
+  background-color: $bg-color;
+  border-radius: $radius-outer;
+  border: 1px solid $border-soft;
+  padding: $pad-outer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Individual Module Sections */
+.section {
+  background-color: $card-bg;
+  border-radius: $radius-section;
+  border: 1px solid $border-soft;
+  padding: $pad-section;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  color: $text-muted;
+  margin-bottom: 10px;
+  padding-left: 2px;
+}
+
+/* Quick Settings & App Buttons */
+.toggle-btn, .app-btn {
+  background-color: $tile-bg;
+  color: $text-main;
+  border-radius: $radius-btn;
+  padding: $pad-btn-y $pad-btn-x;
+  border: 1px solid transparent;
+  min-width: 0;
+  transition: all 0.12s ease-in-out;
+
+  &:hover {
+    background-color: transparentize($accent, 0.85);
+    border-color: transparentize($accent, 0.6);
+  }
+}
+
+/* Distinct Red Styled Power Action Buttons */
+.power-btn {
+  background-color: transparentize($red-accent, 0.85);
+  color: $red-accent;
+  border-radius: $radius-btn;
+  padding: $pad-btn-y $pad-btn-x;
+  border: 1px solid transparentize($red-accent, 0.7);
+  min-width: 0;
+  transition: all 0.12s ease-in-out;
+
+  label, .icon, .btn-label {
+    color: $red-accent;
+  }
+
+  &:hover {
+    background-color: transparentize($red-accent, 0.7);
+    border-color: transparentize($red-accent, 0.4);
+    
+    label, .icon, .btn-label {
+      color: $text-main;
+    }
+  }
+}
+
+/* Solid Fill color structure for Toggles when Active */
+.toggle-btn.active {
+  background-color: $accent;
+  color: $color0;
+  border-color: $accent;
+
+  box {
+    background-color: transparent;
+  }
+
+  label, .icon, .btn-label {
+    color: $color0;
+    background-color: transparent;
+  }
+}
+
+.btn-label {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Slider Layout System */
+.slider-container {
+  padding: 4px 6px; 
+}
+
+/* Aggressive theme override targeting GTK engine to forcefully fill the scale bar */
+scale.slider {
+  /* Target the general background of the active progression zone */
+  background: transparent;
+  margin: 0;
+
+  trough {
+    background-color: $border-strong;
+    border-radius: $radius-track;
+    min-height: 18px; 
+    margin: 0 2px; 
+
+    /* Force background highlights across both GTK3/GTK4 node layouts */
+    highlight, progressbar {
+      background: $accent;
+      background-color: $accent;
+      border-radius: $radius-track;
+    }
+  }
+
+  /* This catches themes that style scale progress bars globally */
+  progressbar {
+    background: $accent;
+    background-color: $accent;
+  }
+
+  slider {
+    background: $text-main;
+    background-color: $text-main;
+    border-radius: 50%;
+    min-height: 18px;
+    min-width: 18px;
+    margin: 0px; 
+  }
+}
