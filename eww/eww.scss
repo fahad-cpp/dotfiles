@@ -138,8 +138,9 @@ $radius-track: 10px;
   padding: 4px 6px; 
 }
 
-/* Android 12 Thick Sliders */
+/* Thick Android 12 Sliders with strict GTK background overrides */
 scale.slider {
+  background: transparent;
   margin: 0; 
 
   trough {
@@ -148,13 +149,15 @@ scale.slider {
     min-height: 18px; 
     margin: 0 2px; 
 
-    progressbar, highlight {
+    /* Force background track color mapping to match the Wi-Fi active accent */
+    highlight, progressbar {
       background: $accent;
       background-color: $accent;
       border-radius: $radius-track;
     }
   }
 
+  /* Fallback target for system themes using standard GTK3 selectors */
   progressbar {
     background: $accent;
     background-color: $accent;

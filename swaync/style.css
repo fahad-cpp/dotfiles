@@ -132,3 +132,30 @@
   min-height: 28px;
   -gtk-icon-size: 28px;
 }
+
+/* 11. Control Center Panel Layout & Smooth Slide Animation */
+.control-center {
+  background-image: none;
+  background-color: var(--color0); /* Matches your dark pywal base */
+  border: 1px solid var(--color1);
+  border-radius: 19px;
+  margin: 8px;
+  padding: 16px;
+  
+  /* Initial active state placement */
+  margin-right: 0px;
+  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Kills default theme layers that cause double panel backgrounds */
+.control-center-row,
+.control-center-background {
+  background-image: none;
+  background-color: transparent;
+}
+
+/* State when hidden: shifted right out of screen viewport boundaries */
+.control-center.blurred {
+  margin-right: -400px; /* Adjust if your panel layout is wider */
+  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}

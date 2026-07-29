@@ -1,20 +1,159 @@
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+/**
+ * Clean & Modern List Layout for Rofi
+ * Powered by Pywal colors with native alpha blending
+ */
 
 configuration {
-	show-icons: true;
+    modi:                       "drun,run,window,filebrowser";
+    show-icons:                 true;
+    display-drun:               " ";
+    display-run:                " ";
+    display-filebrowser:        " ";
+    display-window:             " ";
+    drun-display-format:        "{name}";
+    window-format:              "{w} · {c} · {t}";
+    
+    /* Click outside to close automatically */
+    close-on-click:             true;
 }
 
+/* Import Pywal colors */
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+* {
+    /* Font updated to Noto Sans */
+    font:                        "Noto Sans 9";
+    border-radius-round:        14px;
+    background-translucent:      rgba(0, 0, 0, 0.60);
+}
+
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       500px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    
+    /* Elegant outer border using pywal accent */
+    border:                      2px solid;
+    border-radius:               @border-radius-round;
+    border-color:                @selected-active-background;
+    
+    /* Wrapper frame stays clear to prevent color stacking glitches */
+    background-color:            transparent;
+    cursor:                      "default";
+}
+
+/* Main Container */
+mainbox {
+    enabled:                     true;
+    spacing:                     15px;
+    margin:                      0px;
+    padding:                     30px;
+    border:                      0px solid;
+    border-radius:               @border-radius-round;
+    
+    /* Apply the dynamic translucent background */
+    background-color:            @background-translucent;
+    
+    children:                    [ "inputbar", "listview" ];
+}
+
+/* Input Bar (Search Box) */
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     12px 16px;
+    border:                      0px solid;
+    border-radius:               @border-radius-round;
+    background-color:            @alternate-active-background;
+    text-color:                  @foreground;
+    children:                    [ "prompt", "entry" ];
+}
+
+prompt {
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  @selected-active-background;
+}
+
+entry {
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      text;
+    placeholder:                 "Search...";
+    placeholder-color:           inherit;
+}
+
+/* The List Container */
 listview {
-	columns: 5;
-	lines: 3;
+    enabled:                     true;
+    columns:                     1;
+    lines:                       8;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    
+    spacing:                     8px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    background-color:            transparent;
+    cursor:                      "default";
 }
 
+/* Individual List Elements */
 element {
-	orientation: vertical;
+    enabled:                     true;
+    spacing:                     12px;
+    margin:                      0px;
+    padding:                     10px;
+    border:                      0px solid;
+    border-radius:               @border-radius-round;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      pointer;
+}
+
+element normal.normal {
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+element alternate.normal {
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+element selected.normal {
+    background-color:            @selected-active-background;
+    text-color:                  @background;
 }
 
 element-icon {
-	size: 48px;
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        28px;
+    cursor:                      inherit;
 }
 
-@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
