@@ -16,13 +16,13 @@
       (label :class "section-title" :text "QUICK SETTINGS" :halign "start")
       (box :orientation "horizontal" :space-evenly true :spacing 10
         (button :class {wifi_status == "on" ? "toggle-btn active" : "toggle-btn"}
-                :onclick "hyprctl dispatch exec nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
+                :onclick "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰖩")
             (label :class "btn-label" :text "Wi-Fi" :limit-width 9 :show_truncated true)))
 
         (button :class {bt_status == "on" ? "toggle-btn active" : "toggle-btn"}
-                :onclick "hyprctl dispatch exec bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)"
+                :onclick "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰂯")
             (label :class "btn-label" :text "Bluetooth" :limit-width 9 :show_truncated true)))))
@@ -55,17 +55,17 @@
     (box :class "section" :orientation "vertical" :space-evenly false :spacing 12
       (label :class "section-title" :text "APPLICATIONS" :halign "start")
       (box :orientation "horizontal" :space-evenly true :spacing 10
-        (button :class "app-btn" :onclick "hyprctl dispatch exec codium && eww close control_panel"
+        (button :class "app-btn" :onclick "codium && eww close control_panel"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon app-icon" :text "󰨞")
             (label :class "btn-label" :text "Codium" :limit-width 9 :show_truncated true)))
 
-        (button :class "app-btn" :onclick "hyprctl dispatch exec zen-browser && eww close control_panel"
+        (button :class "app-btn" :onclick "zen-browser && eww close control_panel"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon app-icon" :text "󰖟")
             (label :class "btn-label" :text "Zen" :limit-width 9 :show_truncated true)))
 
-        (button :class "app-btn" :onclick "hyprctl dispatch exec alacritty && eww close control_panel"
+        (button :class "app-btn" :onclick "alacritty && eww close control_panel"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon app-icon" :text "󰞷")
             (label :class "btn-label" :text "Terminal" :limit-width 9 :show_truncated true)))))
@@ -76,28 +76,28 @@
       
       ;; Top row: Log Out & Sleep
       (box :orientation "horizontal" :space-evenly true :spacing 10
-        (button :class "power-btn" :onclick "hyprctl dispatch exit"
+        (button :class "power-btn" :onclick "hyprctl dispatch 'hl.dsp.exit()'"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰐥")
             (label :class "btn-label" :text "Log Out" :limit-width 9 :show_truncated true)))
-        (button :class "power-btn" :onclick "hyprctl dispatch exec systemctl suspend"
+        (button :class "power-btn" :onclick "systemctl suspend"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰤄")
             (label :class "btn-label" :text "Sleep" :limit-width 9 :show_truncated true))))
       
       ;; Bottom row: Reboot & Shut Down
       (box :orientation "horizontal" :space-evenly true :spacing 10
-        (button :class "power-btn" :onclick "hyprctl dispatch exec systemctl reboot"
+        (button :class "power-btn" :onclick "systemctl reboot"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰜉")
             (label :class "btn-label" :text "Reboot" :limit-width 9 :show_truncated true)))
-        (button :class "power-btn" :onclick "hyprctl dispatch exec systemctl poweroff"
+        (button :class "power-btn" :onclick "systemctl poweroff"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰐥")
             (label :class "btn-label" :text "Shut Down" :limit-width 12 :show_truncated true)))))))
 
-;; Dynamic Variables (Polled Native Tooling Backend)
+;; Dynamic Variables (Polled Native Tooling Backend - Safe for Live Reloads)
 (defpoll current_volume :interval "1s" :initial "0" "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}'")
-(defpoll current_brightness :interval "1s" "brightnessctl i | grep -oP '\\(\\d+%\\)' | tr -d '(%)'")
-(defpoll wifi_status :interval "1s" "nmcli radio wifi | grep -q enabled && echo 'on' || echo 'off'")
-(defpoll bt_status :interval "1s" "bluetoothctl show | grep -q 'Powered: yes' && echo 'on' || echo 'off'")
+(defpoll current_brightness :interval "1s" :initial "50" "brightnessctl i | grep -oP '\\(\\d+%\\)' | tr -d '(%)'")
+(defpoll wifi_status :interval "1s" :initial "off" "nmcli radio wifi | grep -q enabled && echo 'on' || echo 'off'")
+(defpoll bt_status :interval "1s" :initial "off" "bluetoothctl show | grep -q 'Powered: yes' && echo 'on' || echo 'off'")

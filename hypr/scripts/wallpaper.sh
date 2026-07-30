@@ -12,6 +12,5 @@ awww img "$WALLPAPER" --transition-type wipe --transition-angle 45 --transition-
 wal -i "$WALLPAPER" -n
 
 hyprctl reload
-eww reload
-
+killall eww && eww daemon &
 pkill -SIGUSR2 waybar 2>/dev/null
