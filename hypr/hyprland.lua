@@ -25,7 +25,6 @@ hl.monitor({
     scale    = 1,
     mirror   = "HDMI-A-1",
 })
-
 --############################
 --## ENVIRONMENT VARIABLES ###
 --############################
@@ -74,16 +73,29 @@ hl.config({
 })
 hl.layer_rule({
     name      = "eww-panel-animation",
-    match     = { 
-        namespace = "eww-panel" 
+    match     = {
+        namespace = "eww-panel"
     },
     animation = "slide right", -- Options: popin, fade, slide [top/bottom/left/right]
 })
-hl.animation({ 
-    leaf    = "global", 
-    enabled = true, 
-    speed   = 5, 
-    bezier  = "default" 
+hl.layer_rule({
+    name = "rofi-animation",
+    match = {
+        namespace = "rofi"
+    },
+    animation = "slide bottom",
+})
+hl.animation({
+    leaf    = "global",
+    enabled = true,
+    speed   = 5,
+    bezier  = "default"
+})
+hl.animation({
+    leaf    = "layers",
+    enabled = true,
+    speed   = 4,
+    bezier  = "default"
 })
 
 hl.config({
@@ -130,10 +142,10 @@ hl.config({
     },
 })
 
-hl.gesture({ 
-    fingers = 3, 
-    direction = "horizontal", 
-    action = "workspace" 
+hl.gesture({
+    fingers = 3,
+    direction = "horizontal",
+    action = "workspace"
 })
 
 hl.device({
@@ -259,8 +271,7 @@ hl.window_rule({
 --#################
 
 hl.on("hyprland.start", function()
-    os.execute("killall -9 eww 2>/dev/null")
-    hl.exec_cmd("eww daemon &")
+    hl.exec_cmd("killall -9 eww && eww daemon &")
     hl.exec_cmd("waybar & awww-daemon & swaync &")
     hl.exec_cmd("nm-applet &")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
