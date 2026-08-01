@@ -4,7 +4,7 @@
  */
 
 configuration {
-    modi:                       "drun,run,window,filebrowser";
+    modi:                       "drun,run,window,filebrowser,combi";
     show-icons:                 true;
     display-drun:               " ";
     display-run:                " ";
