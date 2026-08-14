@@ -10,20 +10,20 @@ local colors = require("colors-hyprland")
 --###############
 --## MONITORS ###
 --###############
+require("monitors")
 
 hl.monitor({
-    output   = "HDMI-A-1",
-    mode     = "preferred",
-    position = "0x0",
-    scale    = 1,
+    output      = "eDP-1",
+    bitdepth    = 10,
+    cm         = "srgb",
+    sdr_eotf    = "gamma22"
 })
 
-hl.monitor({
-    output   = "eDP-1",
-    mode     = "preferred",
-    position = "auto",
-    scale    = 1,
-    mirror   = "HDMI-A-1",
+hl.config({
+    render = {
+        cm_enabled  = true,
+        cm_sdr_eotf = "gamma22"
+    }
 })
 --############################
 --## ENVIRONMENT VARIABLES ###

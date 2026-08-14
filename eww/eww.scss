@@ -2,10 +2,10 @@
 @import '../../.cache/wal/colors.scss';
 
 /* Fixed Pywal Color Palette System */
-$bg-color: transparentize($color0, 0.08);       
-$card-bg: transparentize($color0, 0.6);         
+$bg-color: transparentize(#111111, 0.08);       
+$card-bg: transparentize(#111111, 0.6);         
 $tile-bg: transparentize($color7, 0.94);        
-$accent: $color2;                              
+$accent: $color4;                              
 $text-main: $color7;                           
 $text-muted: transparentize($color7, 0.45);
 
