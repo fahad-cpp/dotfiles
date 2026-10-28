@@ -14,7 +14,11 @@ require("monitors")
 
 hl.monitor({
     output      = "eDP-1",
-    bitdepth    = 10,
+    cm         = "srgb",
+    sdr_eotf    = "gamma22"
+})
+hl.monitor({
+    output      = "HDMI-A-1",
     cm         = "srgb",
     sdr_eotf    = "gamma22"
 })
@@ -229,8 +233,8 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Screenshots
-hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region"))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("hyprshot -m output"))
+hl.bind("Print", hl.dsp.exec_cmd("grimblast --notify --freeze copysave area"))
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("grimblast --notify copysave output"))
 
 --#############################
 --## WINDOWS AND WORKSPACES ###
