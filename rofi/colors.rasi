@@ -1,0 +1,181 @@
+/* Generated with Matugen — do not edit by hand */
+* {
+
+    background: #1a1110;
+
+    blue: #bcc3ff;
+
+    blue-container: #3b4279;
+
+    blue-source: #3e8bff;
+
+    blue-value: #3e8bff;
+
+    cyan: #80d5cf;
+
+    cyan-container: #00504c;
+
+    cyan-source: #2bb6c4;
+
+    cyan-value: #2bb6c4;
+
+    error: #ffb4ab;
+
+    error-container: #93000a;
+
+    green: #aed18d;
+
+    green-container: #324e19;
+
+    green-source: #46a758;
+
+    green-value: #46a758;
+
+    inverse-on-surface: #392e2c;
+
+    inverse-primary: #904b3f;
+
+    inverse-surface: #f1dfdb;
+
+    magenta: #f5b2e1;
+
+    magenta-container: #68355c;
+
+    magenta-source: #c15fd8;
+
+    magenta-value: #c15fd8;
+
+    on-background: #f1dfdb;
+
+    on-blue: #242c61;
+
+    on-blue-container: #dfe0ff;
+
+    on-cyan: #003734;
+
+    on-cyan-container: #9df1eb;
+
+    on-error: #690005;
+
+    on-error-container: #ffdad6;
+
+    on-green: #1c3703;
+
+    on-green-container: #c9eea7;
+
+    on-magenta: #4e1e44;
+
+    on-magenta-container: #ffd7f0;
+
+    on-primary: #561e15;
+
+    on-primary-container: #ffdad4;
+
+    on-primary-fixed: #3a0a04;
+
+    on-primary-fixed-variant: #733429;
+
+    on-red: #561e19;
+
+    on-red-container: #ffdad6;
+
+    on-secondary: #442a25;
+
+    on-secondary-container: #ffdad4;
+
+    on-secondary-fixed: #2c1511;
+
+    on-secondary-fixed-variant: #5d3f3a;
+
+    on-surface: #f1dfdb;
+
+    on-surface-variant: #d8c2be;
+
+    on-tertiary: #3d2e04;
+
+    on-tertiary-container: #fae0a6;
+
+    on-tertiary-fixed: #251a00;
+
+    on-tertiary-fixed-variant: #564519;
+
+    on-yellow: #462a00;
+
+    on-yellow-container: #ffddb6;
+
+    outline: #a08c89;
+
+    outline-variant: #534340;
+
+    primary: #ffb4a6;
+
+    primary-container: #733429;
+
+    primary-fixed: #ffdad4;
+
+    primary-fixed-dim: #ffb4a6;
+
+    red: #ffb4ab;
+
+    red-container: #73332e;
+
+    red-source: #e5484d;
+
+    red-value: #e5484d;
+
+    scrim: #000000;
+
+    secondary: #e7bdb5;
+
+    secondary-container: #5d3f3a;
+
+    secondary-fixed: #ffdad4;
+
+    secondary-fixed-dim: #e7bdb5;
+
+    shadow: #000000;
+
+    source-color: #f83c23;
+
+    surface: #1a1110;
+
+    surface-bright: #423735;
+
+    surface-container: #271d1c;
+
+    surface-container-high: #322826;
+
+    surface-container-highest: #3d3230;
+
+    surface-container-low: #231918;
+
+    surface-container-lowest: #140c0b;
+
+    surface-dim: #1a1110;
+
+    surface-tint: #ffb4a6;
+
+    surface-variant: #534340;
+
+    tertiary: #ddc48c;
+
+    tertiary-container: #564519;
+
+    tertiary-fixed: #fae0a6;
+
+    tertiary-fixed-dim: #ddc48c;
+
+    yellow: #f7bc70;
+
+    yellow-container: #643f00;
+
+    yellow-source: #f5c451;
+
+    yellow-value: #f5c451;
+
+
+    /* translucent variants (#RRGGBBAA) for the launcher window */
+    surface-a:                  #1a1110f2;
+    surface-container-a:        #271d1ce6;
+    primary-a:                  #ffb4a633;
+}

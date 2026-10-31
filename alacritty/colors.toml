@@ -1,0 +1,59 @@
+# Generated with Matugen — do not edit by hand
+
+[colors.primary]
+background        = '#1a1110'
+foreground        = '#f1dfdb'
+dim_foreground    = '#d8c2be'
+bright_foreground = '#f1dfdb'
+
+[colors.cursor]
+text   = '#561e15'
+cursor = '#ffb4a6'
+
+[colors.vi_mode_cursor]
+text   = '#3d2e04'
+cursor = '#ddc48c'
+
+[colors.selection]
+text       = '#ffdad4'
+background = '#733429'
+
+[colors.search.matches]
+foreground = '#fae0a6'
+background = '#564519'
+
+[colors.search.focused_match]
+foreground = '#561e15'
+background = '#ffb4a6'
+
+[colors.footer_bar]
+foreground = '#d8c2be'
+background = '#322826'
+
+[colors.hints.start]
+foreground = '#442a25'
+background = '#e7bdb5'
+
+[colors.hints.end]
+foreground = '#d8c2be'
+background = '#3d3230'
+
+[colors.normal]
+black   = '#3d3230'
+red     = '#ffb4ab'
+green   = '#aed18d'
+yellow  = '#f7bc70'
+blue    = '#bcc3ff'
+magenta = '#f5b2e1'
+cyan    = '#80d5cf'
+white   = '#d8c2be'
+
+[colors.bright]
+black   = '#a08c89'
+red     = '#ffb4ab'
+green   = '#aed18d'
+yellow  = '#f7bc70'
+blue    = '#bcc3ff'
+magenta = '#f5b2e1'
+cyan    = '#80d5cf'
+white   = '#f1dfdb'

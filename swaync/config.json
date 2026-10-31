@@ -16,84 +16,76 @@
   "notification-inline-replies": false,
   "notification-body-image-height": 100,
   "notification-body-image-width": 200,
-  "timeout": 10,
-  "timeout-low": 5,
+  "timeout": 8,
+  "timeout-low": 4,
   "timeout-critical": 0,
   "fit-to-screen": true,
   "relative-timestamps": true,
-  "control-center-width": 500,
-  "control-center-height": 600,
-  "notification-window-width": 350,
+  "control-center-width": 440,
+  "control-center-height": 640,
+  "notification-window-width": 380,
   "keyboard-shortcuts": true,
   "notification-grouping": true,
   "image-visibility": "when-available",
   "transition-time": 200,
   "hide-on-clear": false,
   "hide-on-action": true,
-  "text-empty": "No Notifications",
+  "text-empty": "All caught up",
   "script-fail-notify": true,
-  "scripts": {
-    "example-script": {
-      "app-name": "example.app.id",
-      "exec": "echo 'Do something...'",
-      "urgency": "Normal"
-    },
-    "example-action-script": {
-      "app-name": "example.app.id",
-      "exec": "echo 'Do something actionable!'",
-      "urgency": "Normal",
-      "run-on": "action"
-    }
-  },
-  "notification-visibility": {
-    "example-name": {
-      "state": "muted",
-      "urgency": "Normal",
-      "app-name": "example.app.id"
-    }
-  },
   "widgets": [
-    "inhibitors",
     "title",
     "dnd",
+    "buttons-grid",
+    "volume",
+    "mpris",
     "notifications"
   ],
   "widget-config": {
-    "notifications": {
-      "vexpand": true
-    },
-    "inhibitors": {
-      "text": "Inhibitors",
-      "button-text": "Clear All",
-      "clear-all-button": true
-    },
     "title": {
       "text": "Notifications",
       "clear-all-button": true,
-      "button-text": "Clear All"
+      "button-text": "Clear"
     },
     "dnd": {
       "text": "Do Not Disturb"
     },
-    "label": {
-      "max-lines": 5,
-      "text": "Label Text"
+    "notifications": {
+      "vexpand": true
+    },
+    "volume": {
+      "label": "󰕾",
+      "show-per-app": false
     },
     "mpris": {
       "blacklist": [],
-      "autohide": false,
+      "autohide": true,
       "show-album-art": "always",
       "loop-carousel": false
     },
     "buttons-grid": {
-      "buttons-per-row": 7,
+      "buttons-per-row": 4,
       "actions": [
         {
-          "label": "直",
+          "label": "󰖩",
           "type": "toggle",
           "active": true,
           "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
           "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
+        },
+        {
+          "label": "󰂯",
+          "type": "toggle",
+          "active": false,
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && bluetoothctl power on || bluetoothctl power off'",
+          "update-command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo true || echo false'"
+        },
+        {
+          "label": "󰹑",
+          "command": "sh -c 'swaync-client -cp -sw; sleep 0.4; grimblast --notify --freeze copysave area'"
+        },
+        {
+          "label": "󰈋",
+          "command": "sh -c 'swaync-client -cp -sw; sleep 0.3; ~/.config/waybar/scripts/colorpicker.sh'"
         }
       ]
     }

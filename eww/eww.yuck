@@ -1,4 +1,5 @@
-;; Windows Configuration (Docked to the Right with Animation Hook)
+;; ~/.config/eww/eww.yuck — control panel docked to the right (toggle: SUPER + A)
+
 (defwindow control_panel
   :monitor 0
   :geometry (geometry :x "16px"
@@ -8,10 +9,18 @@
                       :anchor "right center")
   :stacking "fg"
   :exclusive false
-  :namespace "eww-panel"  ;; Handshake identifier for Hyprland slide animation
+  :namespace "eww-panel"   ;; matched by the Hyprland layer rules (slide + blur)
   (box :class "panel-box" :orientation "vertical" :space-evenly false :spacing 14
 
-    ;; Section 1: Quick Settings (Network & Bluetooth Only)
+    ;; ── Header ───────────────────────────────────────────────
+    (box :class "header" :orientation "horizontal" :space-evenly false :spacing 12
+      (label :class "header-avatar icon" :text "󰀄")
+      (box :orientation "vertical" :space-evenly false :spacing 2 :hexpand true :valign "center"
+        (label :class "header-name" :text {username} :halign "start")
+        (label :class "header-sub"  :text {"up " + uptime} :halign "start"))
+      (label :class "battery-pill" :text {"󰁹  " + battery + "%"}))
+
+    ;; ── Quick settings ───────────────────────────────────────
     (box :class "section" :orientation "vertical" :space-evenly false :spacing 12
       (label :class "section-title" :text "QUICK SETTINGS" :halign "start")
       (box :orientation "horizontal" :space-evenly true :spacing 10
@@ -27,7 +36,7 @@
             (label :class "icon" :text "󰂯")
             (label :class "btn-label" :text "Bluetooth" :limit-width 9 :show_truncated true)))))
 
-    ;; Section 2: Controls (Sliders updated for PipeWire & GTK Progress Overlay)
+    ;; ── Sliders ──────────────────────────────────────────────
     (box :class "section" :orientation "vertical" :space-evenly false :spacing 12
       (label :class "section-title" :text "CONTROLS" :halign "start")
 
@@ -51,41 +60,39 @@
                :hexpand true
                :onchange "brightnessctl set {}%")))
 
-    ;; Section 3: Applications
+    ;; ── Applications ─────────────────────────────────────────
     (box :class "section" :orientation "vertical" :space-evenly false :spacing 12
       (label :class "section-title" :text "APPLICATIONS" :halign "start")
       (box :orientation "horizontal" :space-evenly true :spacing 10
-        (button :class "app-btn" :onclick "codium && eww close control_panel"
+        (button :class "app-btn" :onclick "eww close control_panel; codium &"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon app-icon" :text "󰨞")
             (label :class "btn-label" :text "Codium" :limit-width 9 :show_truncated true)))
 
-        (button :class "app-btn" :onclick "zen-browser && eww close control_panel"
+        (button :class "app-btn" :onclick "eww close control_panel; zen-browser &"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon app-icon" :text "󰖟")
             (label :class "btn-label" :text "Zen" :limit-width 9 :show_truncated true)))
 
-        (button :class "app-btn" :onclick "alacritty && eww close control_panel"
+        (button :class "app-btn" :onclick "eww close control_panel; alacritty &"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon app-icon" :text "󰞷")
             (label :class "btn-label" :text "Terminal" :limit-width 9 :show_truncated true)))))
 
-    ;; Section 4: Power Options (Log Out, Sleep, Reboot, Shut Down Grid)
+    ;; ── Power ────────────────────────────────────────────────
     (box :class "section" :orientation "vertical" :space-evenly false :spacing 12
       (label :class "section-title" :text "SYSTEM POWER" :halign "start")
 
-      ;; Top row: Log Out & Sleep
       (box :orientation "horizontal" :space-evenly true :spacing 10
         (button :class "power-btn" :onclick "hyprctl dispatch 'hl.dsp.exit()'"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
-            (label :class "icon" :text "󰐥")
+            (label :class "icon" :text "󰍃")
             (label :class "btn-label" :text "Log Out" :limit-width 9 :show_truncated true)))
         (button :class "power-btn" :onclick "systemctl suspend"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
             (label :class "icon" :text "󰤄")
             (label :class "btn-label" :text "Sleep" :limit-width 9 :show_truncated true))))
 
-      ;; Bottom row: Reboot & Shut Down
       (box :orientation "horizontal" :space-evenly true :spacing 10
         (button :class "power-btn" :onclick "systemctl reboot"
           (box :orientation "vertical" :space-evenly false :spacing 4 :halign "center"
@@ -96,7 +103,16 @@
             (label :class "icon" :text "󰐥")
             (label :class "btn-label" :text "Shut Down" :limit-width 12 :show_truncated true)))))))
 
-;; Dynamic Variables (Clean, Lightweight, & Non-Blocking)
+;; ── Dynamic variables ────────────────────────────────────────
+
+(defpoll username :interval "1h" :initial "user"
+  "whoami")
+
+(defpoll uptime :interval "60s" :initial "…"
+  "uptime -p | sed 's/^up //'")
+
+(defpoll battery :interval "30s" :initial "100"
+  'b=$(cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -n1); echo "\${b:-100}"')
 
 (defpoll current_volume :interval "1s" :initial "0"
   "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}'")

@@ -1,0 +1,11 @@
+/* Generated with Matugen — do not edit by hand */
+* {
+<* for name, value in colors *>
+    {{name | replace: "_", "-"}}: {{value.default.hex}};
+<* endfor *>
+
+    /* translucent variants (#RRGGBBAA) for the launcher window */
+    surface-a:                  {{colors.surface.default.hex}}f2;
+    surface-container-a:        {{colors.surface_container.default.hex}}e6;
+    primary-a:                  {{colors.primary.default.hex}}33;
+}
