@@ -50,35 +50,35 @@ hl.env("QT_STYLE_OVERRIDE", "kvantum")
 --####################
 hl.config({
     general = {
-        gaps_in          = 6,
-        gaps_out         = 12,
-        border_size      = 2,
+        gaps_in          = 4,
+        gaps_out         = 8,
+        border_size      = 1,
         resize_on_border = true,
         allow_tearing    = false,
         layout           = "dwindle",
-        ["col.active_border"]   = col("primary"),
-        ["col.inactive_border"] = col("outline_variant", 0.55),
+        ["col.active_border"]   = col("primary", 0.9),
+        ["col.inactive_border"] = col("outline_variant", 0.35),
     },
 })
 
 hl.config({
     decoration = {
-        rounding         = 14,
-        rounding_power   = 4,
+        rounding         = 10,
+        rounding_power   = 2,      -- plain circular corners: they line up cleanly with a thin border
         active_opacity   = 1.0,
-        inactive_opacity = 0.93,
+        inactive_opacity = 1.0,     -- <1.0 forces blur on EVERY inactive window (expensive); dimming below does the focus cue instead
         dim_inactive     = true,
-        dim_strength     = 0.06,
+        dim_strength     = 0.10,
         shadow = {
             enabled      = true,
-            range        = 22,
+            range        = 12,
             render_power = 3,
-            color        = col("shadow", 0.55),
+            color        = col("shadow", 0.40),
         },
         blur = {
             enabled   = true,
-            size      = 7,
-            passes    = 3,
+            size      = 8,
+            passes    = 2,           -- 2 passes @ size 8 looks ~ like 3 @ 7 for a third less GPU work
             noise     = 0.015,
             contrast  = 0.95,
             brightness = 0.9,
@@ -88,13 +88,16 @@ hl.config({
     },
 })
 
--- Smooth, slightly springy animations.
+-- Animations ───────────────────────────────────────────────────
 -- Custom curves / styles are wrapped in pcall so a syntax difference on your
--- Hyprland build can never stop the config from loading.
-local curve_ok = pcall(hl.curve, "easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
-local curve_ok2 = pcall(hl.curve, "overshoot",   { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
-local ease  = curve_ok  and "easeOutQuint" or "default"
-local spring = curve_ok2 and "overshoot"   or "default"
+-- Hyprland build can never stop the config from loading (a failed style falls back to none).
+local function curve(name, p1, p2)
+    return pcall(hl.curve, name, { type = "bezier", points = { p1, p2 } }) and name or "default"
+end
+local quint   = curve("easeOutQuint",   { 0.23, 1 },    { 0.32, 1 })     -- fast start, long soft landing
+local quick   = curve("quick",          { 0.15, 0 },    { 0.1, 1 })
+local linear2 = curve("almostLinear",   { 0.5, 0.5 },   { 0.75, 1.0 })   -- good for fades
+local spring  = curve("overshoot",      { 0.05, 0.9 },  { 0.1, 1.05 })   -- tiny bounce on open
 
 local function anim(leaf, speed, bezier, style)
     local spec = { leaf = leaf, enabled = true, speed = speed, bezier = bezier }
@@ -107,16 +110,22 @@ local function anim(leaf, speed, bezier, style)
 end
 
 hl.config({ animations = { enabled = true } })
-anim("global",     5,   ease)
-anim("windowsIn",  4.5, spring, "popin 82%")
-anim("windowsOut", 3.5, ease,   "popin 88%")
-anim("windowsMove", 4,  ease)
-anim("fade",       4,   ease)
-anim("border",     6,   ease)
-anim("layers",     4,   ease)
-anim("workspaces", 5,   ease,   "slide")
+anim("global",           5,   quint)
+anim("windowsIn",        4.2, spring,  "popin 86%")
+anim("windowsOut",       3.0, quint,   "popin 90%")
+anim("windowsMove",      4.5, quint)
+anim("border",           6,   quint)
+anim("fadeIn",           3.0, linear2)
+anim("fadeOut",          2.4, linear2)
+anim("fade",             3.0, quick)
+anim("fadeLayersIn",     3.0, linear2)
+anim("fadeLayersOut",    2.4, linear2)
+anim("layersIn",         4.0, quint,   "fade")
+anim("layersOut",        3.0, quint,   "fade")
+anim("workspaces",       5.0, quint,   "slidefade 15%")
+anim("specialWorkspace", 5.0, quint,   "slidefadevert 20%")
 
-hl.config({ dwindle = { preserve_split = true} })
+hl.config({ dwindle = { preserve_split = true } })
 hl.config({ master  = { new_status = "master" } })
 hl.config({
     misc = {

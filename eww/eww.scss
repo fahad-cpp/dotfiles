@@ -7,10 +7,10 @@ $card-bg:      rgba($surface_container, 0.78);
 $tile-bg:      rgba($surface_container_highest, 0.70);
 $border-soft:  rgba($outline_variant, 0.55);
 
-$pad-outer:    18px;
-$pad-section:  14px;
-$pad-btn-y:    12px;
-$pad-btn-x:    6px;
+$pad-outer:    14px;
+$pad-section:  10px;
+$pad-btn-y:    8px;
+$pad-btn-x:    4px;
 
 $radius-outer:   26px;
 $radius-section: 20px;
@@ -26,7 +26,7 @@ $radius-track:   12px;
 
 .icon {
   font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", "Material Design Icons";
-  font-size: 19px;
+  font-size: 18px;
 }
 
 // ── panel ────────────────────────────────────────────────────
@@ -47,9 +47,9 @@ $radius-track:   12px;
   background-color: $primary_container;
   color: $on_primary_container;
   border-radius: 50%;
-  min-width: 46px;
-  min-height: 46px;
-  font-size: 22px;
+  min-width: 42px;
+  min-height: 42px;
+  font-size: 20px;
   padding: 0;
 }
 
@@ -85,14 +85,12 @@ $radius-track:   12px;
 .section-title {
   font-weight: bold;
   font-size: 10px;
-  letter-spacing: 1px;
   color: $on_surface_variant;
-  margin-bottom: 8px;
   padding-left: 2px;
 }
 
 .btn-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
 }
 
@@ -163,7 +161,7 @@ $radius-track:   12px;
 
 // ── sliders ──────────────────────────────────────────────────
 .slider-container {
-  padding: 4px 6px;
+  padding: 2px 6px;
 }
 
 .slider-icon {

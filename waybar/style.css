@@ -28,12 +28,13 @@ window#waybar {
     border: 1px solid alpha(@outline_variant, 0.55);
     border-radius: 18px;
     padding: 3px 5px;
-    box-shadow: 0 3px 10px alpha(@shadow, 0.35);
+    box-shadow: 0 2px 6px alpha(@shadow, 0.35);
 }
 
-.modules-left   { margin: 8px 0 4px 12px; }
-.modules-center { margin: 8px 0 4px 0; }
-.modules-right  { margin: 8px 12px 4px 0; }
+/* bottom margin must be >= shadow blur + offset, otherwise the shadow is cut off at the surface edge */
+.modules-left   { margin: 8px 0 12px 12px; }
+.modules-center { margin: 8px 0 12px 0; }
+.modules-right  { margin: 8px 12px 12px 0; }
 
 /* ── generic chip ──────────────────────────────────────────── */
 #custom-notification,

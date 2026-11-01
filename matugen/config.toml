@@ -34,7 +34,7 @@ cyan    = "#2bb6c4"
 [templates.hyprland]
 input_path  = "~/.config/matugen/templates/hyprland-colors.lua"
 output_path = "~/.config/hypr/colors.lua"
-post_hook   = "hyprctl reload"
+post_hook   = "timeout 3 hyprctl reload"
 
 # ── Waybar ──────────────────────────────────────────────────
 [templates.waybar]
@@ -46,13 +46,13 @@ post_hook   = "pkill -SIGUSR2 waybar || true"
 [templates.swaync]
 input_path  = "~/.config/matugen/templates/colors.css"
 output_path = "~/.config/swaync/colors.css"
-post_hook   = "swaync-client --reload-css || true"
+post_hook   = "timeout 3 swaync-client --reload-css >/dev/null 2>&1 || true"
 
 # ── Eww (control panel) ─────────────────────────────────────
 [templates.eww]
 input_path  = "~/.config/matugen/templates/eww-colors.scss"
 output_path = "~/.config/eww/colors.scss"
-post_hook   = "eww reload || true"
+# eww is restarted by hypr/scripts/wallpaper.sh (matugen/scripts/reload-eww.sh), not from here
 
 # ── Alacritty ───────────────────────────────────────────────
 [templates.alacritty]
@@ -68,7 +68,7 @@ output_path = "~/.config/rofi/colors.rasi"
 [templates.gtk3]
 input_path  = "~/.config/matugen/templates/gtk-colors.css"
 output_path = "~/.config/gtk-3.0/colors.css"
-post_hook   = "bash ~/.config/matugen/scripts/gtk-reload.sh"
+post_hook   = "bash ~/.config/matugen/scripts/gtk-reload.sh >/dev/null 2>&1 &"
 
 [templates.gtk4]
 input_path  = "~/.config/matugen/templates/gtk-colors.css"
