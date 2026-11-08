@@ -2,9 +2,9 @@
 @import "colors";
 
 // ── tokens ───────────────────────────────────────────────────
-$panel-bg:     rgba($surface, 0.82);
-$card-bg:      rgba($surface_container, 0.78);
-$tile-bg:      rgba($surface_container_highest, 0.70);
+$panel-bg:     rgba($surface, 0.65);
+$card-bg:      rgba($surface_container, 0.3);
+$tile-bg:      rgba($surface_container_highest, 0.3);
 $border-soft:  rgba($outline_variant, 0.55);
 
 $pad-outer:    14px;

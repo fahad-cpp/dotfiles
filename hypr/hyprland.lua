@@ -84,6 +84,9 @@ hl.config({
             brightness = 0.9,
             vibrancy  = 0.17,
             popups    = true,
+            new_optimizations = true,
+            ignore_opacity = false,
+            variant = "kawase",
         },
     },
 })
@@ -143,10 +146,10 @@ hl.layer_rule({ name = "eww-panel-animation", match = { namespace = "eww-panel" 
 hl.layer_rule({ name = "rofi-animation",      match = { namespace = "rofi" },      animation = "slide bottom" })
 
 -- Frosted-glass blur behind the shell components (guarded, see note above)
-local function blur_layer(name, namespace)
+local function blur_layer(name, pnamespace)
     pcall(hl.layer_rule, {
         name = name .. "-blur",
-        match = { namespace = namespace },
+        match = { namespace = pnamespace },
         blur = true,
         ignore_alpha = 0.25,
     })

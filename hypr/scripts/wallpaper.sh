@@ -21,8 +21,9 @@ set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DIR="${WALLPAPER_DIR:-$HOME/Pictures/wallpapers}"
 MODE="${MATUGEN_MODE:-dark}"
-SCHEME="${MATUGEN_SCHEME:-scheme-tonal-spot}"
+SCHEME="${MATUGEN_SCHEME:-scheme-content}"
 TARGET="${1:-$DIR}"
+COLOR_PICK=matugen
 
 if [[ -d "$TARGET" ]]; then
     WALLPAPER=$(find "$TARGET" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) | shuf -n 1)
